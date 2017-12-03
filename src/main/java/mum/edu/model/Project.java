@@ -10,20 +10,19 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Project {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+public class Project extends AbstractLongEntity {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private String description;
     
     private String Location;
@@ -34,21 +33,8 @@ public class Project {
     @Temporal(TemporalType.DATE)
     private Date endDate;
     
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "project_id")
     private List<Task> tasks = new ArrayList<Task>();
 
-    
-    public Long getId() {
-        return id;
-    }
-
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    
     public String getDescription() {
         return description;
     }
@@ -88,7 +74,8 @@ public class Project {
         this.endDate = endDate;
     }
 
-    
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id")
     public List<Task> getTasks() {
         return tasks;
     }

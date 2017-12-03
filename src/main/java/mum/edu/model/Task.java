@@ -12,9 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -24,11 +21,13 @@ import javax.persistence.TemporalType;
 import mum.edu.constant.TaskStatus;
 
 @Entity
-public class Task {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+public class Task extends AbstractLongEntity{
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     @Temporal(TemporalType.DATE)
     private Date startDate;
     
@@ -38,39 +37,24 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
     
-    @OneToOne
-    @JoinColumn(name="resource_id")
+    
     private Resource resource;
+    
+    
+    private List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
+    
     
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")
-    private List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
-    
     public List<Beneficiary> getBeneficiaries() {
         return beneficiaries;
     }
 
-
-
-    
     public void setBeneficiaries(List<Beneficiary> beneficiaries) {
         this.beneficiaries = beneficiaries;
     }
 
 
-
-    public Long getId() {
-        return id;
-    }
-
-
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    
     public Date getStartDate() {
         return startDate;
     }
@@ -106,7 +90,8 @@ public class Task {
     }
 
 
-    
+    @OneToOne
+    @JoinColumn(name="resource_id")
     public Resource getResource() {
         return resource;
     }

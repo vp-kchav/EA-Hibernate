@@ -6,32 +6,21 @@ package mum.edu.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import mum.edu.constant.ResourceType;
 
 @Entity
-public class Resource {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+public class Resource extends AbstractLongEntity {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     @Enumerated(EnumType.STRING)
     private ResourceType resourceType;
     
     private int numberOfResource;
-
-    
-    public Long getId() {
-        return id;
-    }
-
-    
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     
     public ResourceType getResourceType() {
