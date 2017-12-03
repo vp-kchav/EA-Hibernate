@@ -7,15 +7,17 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
     	<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/exercised3?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ea1?createDatabaseIfNotExist=true</property>
 <!--    <property name="hibernate.default_catalog">.\MSSQLSERVER2008</property> -->
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">12345678aA</property>
         <property name="hibernate.show_sql">True</property>  
         <property name="hbm2ddl.auto">create</property>
 <!--         <property name="mappingLocations" ref=""/> -->
-		<mapping class ="mum.edu.bidirectional.manytomany.Student"/>
-		<mapping class ="mum.edu.bidirectional.manytomany.Course"/>
+		<mapping class ="mum.edu.model.Project"/>
+		<mapping class ="mum.edu.model.Task"/>
+		<mapping class ="mum.edu.model.Resource"/>
+		<mapping class ="mum.edu.model.Beneficiary"/>
     </session-factory>
 </hibernate-configuration>
 
