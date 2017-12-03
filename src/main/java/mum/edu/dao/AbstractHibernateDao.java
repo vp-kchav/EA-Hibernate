@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import mum.edu.persistance.HibernateUtil;
 
@@ -51,10 +52,12 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      * {@inheritDoc}
      */
     public EntityType get(final IdentifierType id) {
+        Transaction tx = getSession().beginTransaction();
         EntityType entity = getDomainClass().cast(getSession().get(getDomainClass(), id));
         if (entity == null) {
             throw new ObjectNotFoundException(id,getDomainClass().toString());
         }
+        tx.commit();
         return entity;
     }
 
@@ -63,6 +66,7 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      */
     public boolean exists(final IdentifierType id) {
         try {
+            Transaction tx = getSession().beginTransaction();
             EntityType entity = get(id);
             if (entity != null) {
                 return true;
@@ -78,7 +82,9 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      * {@inheritDoc}
      */
     public void update(final EntityType t) {
+        Transaction tx = getSession().beginTransaction();
         getSession().update(t);
+        tx.commit();
     }
 
     /**
@@ -86,7 +92,10 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      */
 
     public IdentifierType save(final EntityType t) {
-        return getKeyClass().cast(getSession().save(t));
+        Transaction tx = getSession().beginTransaction();
+        IdentifierType saved = getKeyClass().cast(getSession().save(t));
+        tx.commit();
+        return saved;
     }
 
     /**
@@ -94,28 +103,35 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      */
 
     public void saveOrUpdate(final EntityType t) {
+        Transaction tx = getSession().beginTransaction();
         getSession().saveOrUpdate(t);
+        tx.commit();
     }
 
     /**
      * {@inheritDoc}
      */
     public void delete(final EntityType t) {
+        Transaction tx = getSession().beginTransaction();
         getSession().delete(t);
+        tx.commit();
     }
 
     /**
      * {@inheritDoc}
      */
     public void deleteById(final IdentifierType id) {
+        Transaction tx = getSession().beginTransaction();
         EntityType t = load(id);
         delete(t);
+        tx.commit();
     }
     
     /**
      * {@inheritDoc}
      */
     public EntityType load(final IdentifierType id) {
+        Transaction tx = getSession().beginTransaction();
         return getDomainClass().cast(getSession().load(getDomainClass(), id));
     }
 
@@ -123,14 +139,19 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      * {@inheritDoc}
      */
     public void refresh(final EntityType entity) {
+        Transaction tx = getSession().beginTransaction();
         getSession().refresh(entity);
+        tx.commit();
     }
 
     /**
      * {@inheritDoc}
      */
     public EntityType merge(final EntityType t) {
-        return getDomainClass().cast(getSession().merge(t));
+        Transaction tx = getSession().beginTransaction();
+        EntityType updated = getDomainClass().cast(getSession().merge(t));
+        tx.commit();
+        return updated;
     }
 
 
@@ -139,16 +160,21 @@ public abstract class AbstractHibernateDao<EntityType extends Serializable, Iden
      */
     @SuppressWarnings("unchecked")
     public List<EntityType> findAll() {
+        Transaction tx = getSession().beginTransaction();
         Session session = getSession();
         Criteria criteria = session.createCriteria(getDomainClass());
-        return criteria.list();
+        List<EntityType> result = criteria.list();
+        tx.commit();
+        return result;
     }
     
     /**
      * {@inheritDoc}
      */
     public void evict(final EntityType entity) {
+        Transaction tx = getSession().beginTransaction();
         getSession().evict(entity);
+        tx.commit();
     }
 
     /**

@@ -9,6 +9,11 @@ import javax.persistence.Entity;
 @Entity
 public class Beneficiary extends AbstractLongEntity{
    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private String firstName;
     
     private String LastName;
@@ -18,6 +23,19 @@ public class Beneficiary extends AbstractLongEntity{
     @Embedded
     private Address address;
     
+    public Beneficiary() {
+        
+    }
+    
+    public Beneficiary(String firstName, String lastName, String gender, Address address) {
+        super();
+        this.firstName = firstName;
+        LastName = lastName;
+        this.gender = gender;
+        this.address = address;
+    }
+
+
     public String getFirstName() {
         return firstName;
     }

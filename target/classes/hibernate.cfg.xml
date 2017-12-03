@@ -10,9 +10,10 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ea1?createDatabaseIfNotExist=true</property>
 <!--    <property name="hibernate.default_catalog">.\MSSQLSERVER2008</property> -->
         <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.connection.password">12345678aA</property>
         <property name="hibernate.show_sql">True</property>  
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">validate</property>
 <!--         <property name="mappingLocations" ref=""/> -->
 		<mapping class ="mum.edu.model.Project"/>
 		<mapping class ="mum.edu.model.Task"/>

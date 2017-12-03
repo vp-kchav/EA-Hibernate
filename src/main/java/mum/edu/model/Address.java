@@ -7,6 +7,17 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+    
+    public Address() {
+        
+    }
+    
+    public Address(String street, String city, String state, String zipCode) {
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
 
     private String street;
     private String city;

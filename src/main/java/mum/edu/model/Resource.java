@@ -21,13 +21,21 @@ public class Resource extends AbstractLongEntity {
     private ResourceType resourceType;
     
     private int numberOfResource;
-
     
+    public Resource() {
+        
+    }
+    
+    public Resource(ResourceType resourceType, int numberOfResource) {
+        super();
+        this.resourceType = resourceType;
+        this.numberOfResource = numberOfResource;
+    }
+
     public ResourceType getResourceType() {
         return resourceType;
     }
 
-    
     public void setResourceType(ResourceType resourceType) {
         this.resourceType = resourceType;
     }
@@ -41,4 +49,6 @@ public class Resource extends AbstractLongEntity {
     public void setNumberOfResource(int numberOfResource) {
         this.numberOfResource = numberOfResource;
     }
+    
+    
 }

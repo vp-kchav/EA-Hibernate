@@ -34,7 +34,7 @@ public class Task extends AbstractLongEntity{
     @Temporal(TemporalType.DATE)
     private Date endDate;
     
-    @Enumerated(EnumType.STRING)
+    
     private TaskStatus status;
     
     
@@ -43,8 +43,20 @@ public class Task extends AbstractLongEntity{
     
     private List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
     
+    public Task() {
+        
+    }
     
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    public Task(Date startDate, Date endDate, TaskStatus status, Resource resource, List<Beneficiary> beneficiaries) {
+        super();
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+        this.resource = resource;
+        this.beneficiaries = beneficiaries;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")
     public List<Beneficiary> getBeneficiaries() {
         return beneficiaries;
@@ -58,46 +70,35 @@ public class Task extends AbstractLongEntity{
     public Date getStartDate() {
         return startDate;
     }
-
-
     
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
-
     
     public Date getEndDate() {
         return endDate;
     }
 
-
-    
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
 
-    
+    @Enumerated(EnumType.STRING)
     public TaskStatus getStatus() {
         return status;
     }
 
-
-    
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="resource_id")
     public Resource getResource() {
         return resource;
     }
 
-
-    
     public void setResource(Resource resource) {
         this.resource = resource;
     }

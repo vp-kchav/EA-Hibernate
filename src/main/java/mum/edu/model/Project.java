@@ -25,15 +25,30 @@ public class Project extends AbstractLongEntity {
 
     private String description;
     
-    private String Location;
+    private String location;
     
     @Temporal(TemporalType.DATE)
     private Date startDate;
     
     @Temporal(TemporalType.DATE)
     private Date endDate;
-    
+
     private List<Task> tasks = new ArrayList<Task>();
+    
+    public Project() {
+        
+    }
+    
+    public Project(String description, String location, Date startDate, Date endDate, List<Task> tasks) {
+        super();
+        this.description = description;
+        this.location = location;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.tasks = tasks;
+    }
+
+
 
     public String getDescription() {
         return description;
@@ -46,12 +61,12 @@ public class Project extends AbstractLongEntity {
 
     
     public String getLocation() {
-        return Location;
+        return location;
     }
 
     
     public void setLocation(String location) {
-        Location = location;
+        this.location = location;
     }
 
     
@@ -74,7 +89,7 @@ public class Project extends AbstractLongEntity {
         this.endDate = endDate;
     }
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "project_id")
     public List<Task> getTasks() {
         return tasks;
