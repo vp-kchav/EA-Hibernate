@@ -14,6 +14,7 @@ import mum.edu.constant.ResourceType;
 import mum.edu.constant.TaskStatus;
 import mum.edu.model.Address;
 import mum.edu.model.Beneficiary;
+import mum.edu.model.OfferedTask;
 import mum.edu.model.Project;
 import mum.edu.model.Resource;
 import mum.edu.model.Task;
@@ -25,14 +26,14 @@ public class ProjectServiceTest {
     private ProjectService service = new ProjectServiceImpl();
     
     @Test
-//    @Ignore
+    @Ignore
     public void testGet() {
         Project p = service.getById(1222l);
         System.out.println("sdfdfdf");
     }
     
     @Test
-    @Ignore
+//    @Ignore
     public void testInsert() {
         Project p = new Project();
         List<Task> tasks = new ArrayList<Task>();
@@ -52,6 +53,10 @@ public class ProjectServiceTest {
         address.setZipCode("52557");
         be.setAddress(address);
         bes.add(be);
+        //offer task
+        OfferedTask ot = new OfferedTask();
+        ot.setOffered(ResourceType.VOLUNTEER);
+        ot.setOfferedDate(new Date());
         //task
         Task task = new Task();
         task.setEndDate(new Date());
@@ -59,6 +64,7 @@ public class ProjectServiceTest {
         task.setStatus(TaskStatus.WAITING);
         task.setResource(r);
         task.setBeneficiaries(bes);
+        task.addOfferedTask(ot);
         tasks.add(task);
         
         //project

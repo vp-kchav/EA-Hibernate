@@ -4,6 +4,7 @@
 package mum.edu.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -37,23 +38,26 @@ public class Task extends AbstractLongEntity{
     
     private TaskStatus status;
     
-    
+ 
     private Resource resource;
     
     
     private List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
     
+    private List<OfferedTask> offerdTasks = new ArrayList<OfferedTask>();
+    
     public Task() {
         
     }
     
-    public Task(Date startDate, Date endDate, TaskStatus status, Resource resource, List<Beneficiary> beneficiaries) {
+    public Task(Date startDate, Date endDate, TaskStatus status, Resource resource, List<Beneficiary> beneficiaries, List<OfferedTask> offeredTasks) {
         super();
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
         this.resource = resource;
         this.beneficiaries = beneficiaries;
+        this.offerdTasks = offeredTasks;
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -64,6 +68,25 @@ public class Task extends AbstractLongEntity{
 
     public void setBeneficiaries(List<Beneficiary> beneficiaries) {
         this.beneficiaries = beneficiaries;
+    }
+    
+    @OneToMany(mappedBy="task",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public List<OfferedTask> getOfferdTasks() {
+        return Collections.unmodifiableList(offerdTasks);
+    }
+    
+    public void addOfferedTask(OfferedTask offeredTask) {
+        offerdTasks.add(offeredTask);
+        offeredTask.setTask(this);
+    }
+    
+    public void removeOfferedTask(OfferedTask offeredTask) {
+        offeredTask.setTask(null);
+        offerdTasks.remove(offeredTask);
+    }
+
+    public void setOfferdTasks(List<OfferedTask> offerdTasks) {
+        this.offerdTasks = offerdTasks;
     }
 
 

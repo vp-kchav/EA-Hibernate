@@ -3,8 +3,8 @@
  */
 package mum.edu.dao;
 
-import mum.edu.model.Task;
+import mum.edu.model.OfferedTask;
 
-public interface TaskDao extends DataAccessObject<Task,Long> {
+public interface TaskDao extends DataAccessObject<OfferedTask,Long> {
 
 }

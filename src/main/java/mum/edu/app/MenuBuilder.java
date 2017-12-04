@@ -1,0 +1,107 @@
+package mum.edu.app;
+
+
+import java.util.Date;
+import java.util.Scanner;
+
+
+public class MenuBuilder 
+{
+	private String msgInputId="Please Input Product ID: ";
+	private String msgInputName="Please Input Product Name: ";
+	private String msgInputPrice="Please Input Product Price: ";
+	private String msgInputQty="Please Input Product Qty: ";
+	private String msgInputCategoryName="Please Input Category Name: ";
+	private String msgInsertSuccess="Product is Adding success!!!";
+	private String msgDelete="Product is Deleted success!!! ";
+	private String msgUpdate="Product is Updated success!!! ";
+	private String msgTranFail="Transaction is not success!!!";
+
+	public static int menu(){
+		System.out.println("\n");
+		System.out.println("**************************************************************");
+		System.out.println("*                                                            *");
+		System.out.println("*                            Menu                            *");
+		System.out.println("*                                                            *");
+		System.out.println("**************************************************************");
+		System.out.println("*                                                            *");
+		System.out.println("*                 1. Display All Information Project         *");
+		System.out.println("*                 2. Add new Task                            *");
+		System.out.println("*                 3. Delete Task                             *");
+		System.out.println("*                 4. Offered Task                            *");
+		System.out.println("*                 5. List Task by Project                    *");
+		System.out.println("*                 6. List project By Status                  *");
+	    System.out.println("*                 7. List project By Keyword and Location    *");
+	    System.out.println("*                 8. List Volunteer projects                  *");
+		System.out.println("*                 9. Exit                                    *");
+		System.out.println("*                                                            *");
+		System.out.println("**************************************************************");
+
+		int choice = 0;
+		while(true){
+			System.out.println("Choice: ");
+			Scanner sc = new Scanner(System.in); 
+			if (!sc.hasNextInt()){
+				System.out.println("This menu can input number only.\n");
+				continue;
+			}
+			
+			choice = sc.nextInt();
+			
+			if(choice == -1){
+				break;				
+			}
+			if(choice < 1 || choice > 9){
+				System.out.println("Out of range. Please choose number (1 - 9) in menu.\n");
+				continue;
+			}
+			break;
+		}		
+		return choice;
+	}
+	
+	
+	public static double inputDouble()
+	{
+		double number;
+		Scanner in = new Scanner(System.in);
+		number = in.nextDouble();
+		return number;
+	}
+	public static int inputInt()
+	{
+		int number;
+		Scanner in = new Scanner(System.in);
+		number = in.nextInt();
+		return number;
+	}
+	public static String inputString()
+	{
+		String str;
+		Scanner in = new Scanner(System.in);
+		str = in.nextLine();
+		return str;
+	}
+	
+	public static Long inputLong()
+    {
+        Long l;
+        Scanner in = new Scanner(System.in);
+        l = in.nextLong();
+        return l;
+    }
+	
+	public static Date inputDate()
+    {
+	    System.out.println("please input Month");
+        Scanner in = new Scanner(System.in);
+        int month = in.nextInt();
+        System.out.println("please input Day");
+        int day = in.nextInt();
+        System.out.println("please input year(yyyy)");
+        int year = in.nextInt();
+        Date d = new Date(year,month,day);
+        return d;
+    }
+    
+}

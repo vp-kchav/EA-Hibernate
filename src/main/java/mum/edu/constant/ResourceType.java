@@ -5,5 +5,5 @@ package mum.edu.constant;
 
 public enum ResourceType {
 
-    VOLUNTEER, ASSET
+    VOLUNTEER, ASSET, ADMINISTRATOR
 }

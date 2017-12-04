@@ -55,5 +55,14 @@ public class Address {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+    
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getStreet()).append(" ");
+        builder.append(this.getCity()).append(" ");
+        builder.append(this.getState()).append(" ");
+        builder.append(this.getZipCode());
+        return builder.toString();
+    }
    
 }

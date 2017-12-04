@@ -13,12 +13,13 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.connection.password">12345678aA</property>
         <property name="hibernate.show_sql">True</property>  
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">update</property>
 <!--         <property name="mappingLocations" ref=""/> -->
 		<mapping class ="mum.edu.model.Project"/>
 		<mapping class ="mum.edu.model.Task"/>
 		<mapping class ="mum.edu.model.Resource"/>
 		<mapping class ="mum.edu.model.Beneficiary"/>
+		<mapping class="mum.edu.model.OfferedTask"/>
     </session-factory>
 </hibernate-configuration>
 

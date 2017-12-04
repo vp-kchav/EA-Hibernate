@@ -17,7 +17,6 @@ public class Resource extends AbstractLongEntity {
      */
     private static final long serialVersionUID = 1L;
 
-    @Enumerated(EnumType.STRING)
     private ResourceType resourceType;
     
     private int numberOfResource;
@@ -32,6 +31,7 @@ public class Resource extends AbstractLongEntity {
         this.numberOfResource = numberOfResource;
     }
 
+    @Enumerated(EnumType.STRING)
     public ResourceType getResourceType() {
         return resourceType;
     }
