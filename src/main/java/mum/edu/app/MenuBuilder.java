@@ -7,15 +7,15 @@ import java.util.Scanner;
 
 public class MenuBuilder 
 {
-	private String msgInputId="Please Input Product ID: ";
-	private String msgInputName="Please Input Product Name: ";
-	private String msgInputPrice="Please Input Product Price: ";
-	private String msgInputQty="Please Input Product Qty: ";
-	private String msgInputCategoryName="Please Input Category Name: ";
-	private String msgInsertSuccess="Product is Adding success!!!";
-	private String msgDelete="Product is Deleted success!!! ";
-	private String msgUpdate="Product is Updated success!!! ";
-	private String msgTranFail="Transaction is not success!!!";
+//	private String msgInputId="Please Input Product ID: ";
+//	private String msgInputName="Please Input Product Name: ";
+//	private String msgInputPrice="Please Input Product Price: ";
+//	private String msgInputQty="Please Input Product Qty: ";
+//	private String msgInputCategoryName="Please Input Category Name: ";
+//	private String msgInsertSuccess="Product is Adding success!!!";
+//	private String msgDelete="Product is Deleted success!!! ";
+//	private String msgUpdate="Product is Updated success!!! ";
+//	private String msgTranFail="Transaction is not success!!!";
 
 	public static int menu(){
 		System.out.println("\n");

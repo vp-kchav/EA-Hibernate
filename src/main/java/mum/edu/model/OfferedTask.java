@@ -31,6 +31,17 @@ public class OfferedTask extends AbstractLongEntity {
     
     private Task task;
 
+    public OfferedTask() {
+        
+    }
+    
+    public OfferedTask(Date offeredDate, ResourceType offered) {
+        super();
+        this.offeredDate = offeredDate;
+        this.offered = offered;
+    }
+
+
     @Temporal(TemporalType.DATE)
     public Date getOfferedDate() {
         return offeredDate;
@@ -52,7 +63,7 @@ public class OfferedTask extends AbstractLongEntity {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="offered_id")
+    @JoinColumn(name="task_id")
     public Task getTask() {
         return task;
     }

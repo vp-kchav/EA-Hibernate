@@ -3,9 +3,13 @@
  */
 package mum.edu.service;
 
+import java.util.List;
+
+import mum.edu.constant.TaskStatus;
 import mum.edu.model.Project;
-import mum.edu.service.EntityService;
 
 public interface ProjectService extends EntityService<Project, Long>{
+    
+    List<Project> getProjectByStatus(TaskStatus status);
 
 }

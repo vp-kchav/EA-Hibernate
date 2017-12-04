@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import mum.edu.constant.ResourceType;
 import mum.edu.constant.TaskStatus;
 import mum.edu.model.Beneficiary;
+import mum.edu.model.OfferedTask;
 import mum.edu.model.Project;
 import mum.edu.model.Resource;
 import mum.edu.model.Task;
@@ -66,6 +67,62 @@ public class Application {
 	    taskService.deleteById(taskId);
 	    System.out.println("Delete Successfully!!!");
 	}
+	
+	public static void offeredTask() {
+	    System.out.println("Please input task ID you want to offered:");
+	    Long taskId = MenuBuilder.inputLong();
+	    Task task  = taskService.getById(taskId);
+	    OfferedTask ot = new OfferedTask(new Date(),ResourceType.VOLUNTEER);
+	    task.addOfferedTask(ot);
+	    taskService.merge(task);
+	    System.out.println("Offered a task has been sent!!!");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void getTasksByProject() {
+	    System.out.println("-------Tasks---------");
+	    System.out.println("Please input project ID:");
+	    Long pId = MenuBuilder.inputLong();
+        Project project = projectServise.getById(pId);
+        for(Task task : project.getTasks()) {
+            System.out.println(task.getStatus());
+            System.out.println(task.getStartDate());
+            System.out.println(task.getEndDate());
+            System.out.println(task.getResource().getResourceType().toString());
+            System.out.println(task.getResource().getNumberOfResource());
+        }
+	    System.out.println("----------------");
+	}
+	
+	public static void getProjectBystatus() {
+	    System.out.println("please input the status of Project : 1-WAITING , 2-CODING , 3-VALIDATE , 4-CODE_REVIEW , 5-DONE");
+	    int statusInt = MenuBuilder.inputInt();
+	    TaskStatus status=null;
+	    switch(statusInt) {
+	        case 1:
+	           status = TaskStatus.WAITING;
+	           break;
+	        case 2:
+	            status = TaskStatus.CODING;
+	            break;
+	        case 3:
+	            status = TaskStatus.VALIDATE;
+	            break;
+	        case 4:
+	            status = TaskStatus.CODE_REVIEW;
+	            break;
+	        case 5:
+	            status = TaskStatus.DONE;
+	            break;       
+	    }
+	    List<Project> projects = projectServise.getProjectByStatus(status);
+	    if(projects != null) {
+	        for(Project project : projects) {
+	            System.out.println(project.getDescription());
+	        }
+	    }
+	}
+	
 	public static void main(String[] args) {
 	    while(true){
           int choice = MenuBuilder.menu();
@@ -83,12 +140,21 @@ public class Application {
                   break;
                   
               case 4:
+                  offeredTask();
                   break;
                   
               case 5:
+                  getTasksByProject();
                   break;
                   
               case 6:
+                  getProjectBystatus();
+                  break;
+              
+              case 7:                  
+                  break;
+              
+              case 8:
                   break;
                   
               case 9:

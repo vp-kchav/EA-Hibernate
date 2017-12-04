@@ -4,7 +4,6 @@
 package mum.edu.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -36,8 +35,8 @@ public class Task extends AbstractLongEntity{
     private Date endDate;
     
     
-    private TaskStatus status;
     
+    private TaskStatus status;
  
     private Resource resource;
     
@@ -72,7 +71,7 @@ public class Task extends AbstractLongEntity{
     
     @OneToMany(mappedBy="task",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<OfferedTask> getOfferdTasks() {
-        return Collections.unmodifiableList(offerdTasks);
+        return offerdTasks;
     }
     
     public void addOfferedTask(OfferedTask offeredTask) {
