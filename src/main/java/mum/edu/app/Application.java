@@ -123,6 +123,51 @@ public class Application {
 	    }
 	}
 	
+	public static void getProjectByKeywordAndLocation() {
+	    System.out.println("please input keyword: ");
+	    String keyword = MenuBuilder.inputString();
+	    System.out.println("please input Location: ");
+	    String location = MenuBuilder.inputString();
+	    List<Project> projects = projectServise.findProjectBykeyWordAndLocation(keyword, location);
+        if(projects != null) {
+            for(Project project : projects) {
+                System.out.println(project.getDescription());
+            }
+        }
+	}
+	
+    public static void getProjectOfferedByVolunteer() {
+        List<Project> projects = projectServise.findProjectOfferedByVolunteer();
+        if(projects != null) {
+            for(Project project : projects) {
+                System.out.println(project.getDescription());
+            }
+        }
+    }
+    
+	private static void getProjectByResourceType() {
+	    System.out.println("please input Resource Type : 1-VOLUNTEER , 2-ASSET , 3-ADMINISTRATOR ");
+        int intResourceType = MenuBuilder.inputInt();
+        ResourceType type = null;
+        switch(intResourceType) {
+            case 1:
+                type = ResourceType.VOLUNTEER;
+               break;
+            case 2:
+                type = ResourceType.ASSET;
+                break;
+            case 3:
+                type = ResourceType.ADMINISTRATOR;
+                break;       
+        }
+        List<Project> projects = projectServise.findProjectByResourceType(type);
+        if(projects != null) {
+            for(Project project : projects) {
+                System.out.println(project.getDescription());
+            }
+        }
+	}
+	
 	public static void main(String[] args) {
 	    while(true){
           int choice = MenuBuilder.menu();
@@ -151,13 +196,18 @@ public class Application {
                   getProjectBystatus();
                   break;
               
-              case 7:                  
+              case 7:         
+                  getProjectByKeywordAndLocation();
                   break;
               
               case 8:
+                  getProjectOfferedByVolunteer();
                   break;
                   
               case 9:
+                  getProjectByResourceType();
+                  break;
+              case 10:
                   System.out.println("Good Bye");
                   System.exit(0);
                   break;

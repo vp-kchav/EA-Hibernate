@@ -7,16 +7,6 @@ import java.util.Scanner;
 
 public class MenuBuilder 
 {
-//	private String msgInputId="Please Input Product ID: ";
-//	private String msgInputName="Please Input Product Name: ";
-//	private String msgInputPrice="Please Input Product Price: ";
-//	private String msgInputQty="Please Input Product Qty: ";
-//	private String msgInputCategoryName="Please Input Category Name: ";
-//	private String msgInsertSuccess="Product is Adding success!!!";
-//	private String msgDelete="Product is Deleted success!!! ";
-//	private String msgUpdate="Product is Updated success!!! ";
-//	private String msgTranFail="Transaction is not success!!!";
-
 	public static int menu(){
 		System.out.println("\n");
 		System.out.println("**************************************************************");
@@ -31,9 +21,10 @@ public class MenuBuilder
 		System.out.println("*                 4. Offered Task                            *");
 		System.out.println("*                 5. List Task by Project                    *");
 		System.out.println("*                 6. List project By Status                  *");
-	    System.out.println("*                 7. List project By Keyword and Location    *");
-	    System.out.println("*                 8. List Volunteer projects                  *");
-		System.out.println("*                 9. Exit                                    *");
+		System.out.println("*                 7. List project By Keyword and Location    *");
+	    System.out.println("*                 8. List Volunteer Offered projects         *");
+	    System.out.println("*                 9. List Project by Type of Resource        *");
+		System.out.println("*                 10. Exit                                   *");
 		System.out.println("*                                                            *");
 		System.out.println("**************************************************************");
 
@@ -51,7 +42,7 @@ public class MenuBuilder
 			if(choice == -1){
 				break;				
 			}
-			if(choice < 1 || choice > 9){
+			if(choice < 1 || choice > 10){
 				System.out.println("Out of range. Please choose number (1 - 9) in menu.\n");
 				continue;
 			}
