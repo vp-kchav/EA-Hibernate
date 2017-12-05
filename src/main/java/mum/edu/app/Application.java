@@ -1,3 +1,4 @@
+
 package mum.edu.app;
 
 import java.util.Date;
@@ -53,6 +54,7 @@ public class Application {
 	        System.out.println(p.getLocation());
 	        for(Task task : p.getTasks()) {
 	            for(Beneficiary be : task.getBeneficiaries()) {
+	                System.out.println("=====");
 	                System.out.println(be.getFirstName() + " " + be.getLastName());
 	                System.out.println(be.getAddress().toString());
 	            }
